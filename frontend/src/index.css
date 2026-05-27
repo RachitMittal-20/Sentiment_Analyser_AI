@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    @apply bg-background scroll-smooth;
+  }
+
+  body {
+    @apply min-h-screen bg-background font-mono text-text-primary antialiased;
+    background-image:
+      radial-gradient(circle at top left, rgba(99, 102, 241, 0.16), transparent 32%),
+      linear-gradient(180deg, rgba(17, 17, 24, 0.96), rgba(10, 10, 15, 1));
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+  }
+
+  ::selection {
+    @apply bg-accent text-background;
+  }
+}
+
+@layer components {
+  .panel {
+    @apply rounded-[2rem] border border-border bg-surface/90 shadow-panel backdrop-blur;
+  }
+
+  .kicker {
+    @apply font-mono text-[0.7rem] uppercase tracking-[0.3em] text-text-muted;
+  }
+
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  .shimmer {
+    @apply animate-shimmer bg-[linear-gradient(110deg,rgba(30,30,46,0.45),rgba(99,102,241,0.22),rgba(30,30,46,0.45))] bg-[length:200%_100%];
+  }
+}
+
+@layer utilities {
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
