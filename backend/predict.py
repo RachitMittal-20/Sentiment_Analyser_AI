@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Sequence
@@ -121,12 +122,17 @@ def _validate_model_directory(model_dir: Path) -> None:
 
 
 def load_predictor(model_dir: Path = MODEL_DIR) -> SentimentPredictor:
-    """Load the fine-tuned sentiment model from disk."""
-    _validate_model_directory(model_dir)
-
-    config = AutoConfig.from_pretrained(model_dir)
-    tokenizer = AutoTokenizer.from_pretrained(model_dir)
-    model = AutoModelForSequenceClassification.from_pretrained(model_dir)
+    """Load the fine-tuned sentiment model from disk or the Hub."""
+    model_id = os.getenv("HF_MODEL_ID")
+    if model_id:
+        config = AutoConfig.from_pretrained(model_id)
+        tokenizer = AutoTokenizer.from_pretrained(model_id)
+        model = AutoModelForSequenceClassification.from_pretrained(model_id)
+    else:
+        _validate_model_directory(model_dir)
+        config = AutoConfig.from_pretrained(model_dir)
+        tokenizer = AutoTokenizer.from_pretrained(model_dir)
+        model = AutoModelForSequenceClassification.from_pretrained(model_dir)
     classifier = pipeline(
         task=MODEL_TASK,
         model=model,

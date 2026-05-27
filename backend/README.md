@@ -10,7 +10,8 @@ python train.py
 uvicorn main:app --reload
 ```
 
-The API fails fast on startup until `./model/` exists with trained artifacts.
+The API fails fast on startup until `./model/` exists with trained artifacts. You
+can also load from the Hugging Face Hub by setting `HF_MODEL_ID`.
 
 ## Routes
 

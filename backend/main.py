@@ -3,13 +3,17 @@
 from __future__ import annotations
 
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import Any
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from predict import load_predictor
+
+PUBLIC_DIR = Path(__file__).resolve().parent / "public"
 
 
 class PredictionRequest(BaseModel):
@@ -130,3 +134,7 @@ async def read_model_info(request: Request) -> dict[str, Any]:
     """Return metadata about the loaded model."""
     predictor = get_predictor(request)
     return predictor.model_info
+
+
+if PUBLIC_DIR.exists():
+    app.mount("/", StaticFiles(directory=str(PUBLIC_DIR), html=True), name="static")
