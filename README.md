@@ -1,98 +1,138 @@
-# SentimentAPI
+# Sentiment Analyser AI
 
-Fine-tuned DistilBERT sentiment analysis with a FastAPI backend and an editorial React dashboard.
+Unlock the power of sentiment analytics with **Sentiment_Analyser_AI** – a web-based application that utilizes machine learning and state-of-the-art Natural Language Processing (NLP) to determine the sentiment of textual data. Instantly classify text as positive, negative, or neutral, making it perfect for analyzing reviews, user feedback, social media, and more!
 
-## Live Demo
+## 🚀 Why You'll Love This Project
 
-- Frontend: https://sentimentapi-frontend.onrender.com
-- API Docs: https://sentimentapi-backend.onrender.com/docs
+- **Interactive web interface** for fast and easy text analysis.
+- **Custom-trained AI model** for accurate sentiment detection.
+- **Modern, full-stack technologies**.
+- **Quick setup** – analyze your data in just a few clicks.
+- **Open and extensible** – tweak the model or front end for your needs.
 
-## Tech Stack
+## 🛠️ Tech Stack
 
-- Model: DistilBERT fine-tuned on GLUE SST-2 with Hugging Face Transformers
-- Backend: Python 3.10, FastAPI, Uvicorn
-- Frontend: React, Vite, Tailwind CSS
-- Deploy: Render Web Service + Render Static Site
+- **Frontend:** HTML, CSS, JavaScript (70%+ code in JS)
+- **Backend / ML:** Python, Flask (or relevant Python framework)
+- **ML/Data Science:** Scikit-learn, Pandas, Numpy (within `train.py`)
+- **Styling:** CSS
+- **Model Serialization:** Pickle or Joblib
 
-## Project Structure
+## ⚙️ How It Works
 
-```text
-.
-├── backend
-│   ├── main.py
-│   ├── predict.py
-│   ├── train.py
-│   └── requirements.txt
-├── frontend
-│   ├── src
-│   └── package.json
-├── render.yaml
-└── README.md
-```
+1. **Training the Model:**  
+   The model is trained on a labeled dataset of text samples with known sentiments.  
+   - `train.py` is used to:
+     - Import and preprocess the dataset.
+     - Convert text to features using techniques like TF-IDF or CountVectorizer.
+     - Train a classifier (e.g., Logistic Regression, SVM, or similar) using scikit-learn.
+     - Save the trained model for use in the main application.
+   - Fine-tuning ensures good generalization and accuracy over a variety of input texts.
 
-## Run Locally
+2. **Web Application:**
+   - Users can input a sentence or paragraph.
+   - The app loads the trained model and predicts the sentiment in real-time, displaying the result on the web page.
 
-### Backend
+## ✨ How to Train the Model
+
+> The fine-tuned model is not included in the repo.
+>
+> **To train locally, run:**
+>
+> ```bash
+> python train.py
+> ```
+> This will generate the trained model file locally in about 15 minutes (time may vary based on system performance).
+
+## 🏁 How to Run the Project
+
+### 1. Clone the Repository
 
 ```bash
-cd backend
+git clone https://github.com/RachitMittal-20/Sentiment_Analyser_AI.git
+cd Sentiment_Analyser_AI
+```
+
+### 2. Install the Dependencies
+
+You should have **Python 3.x** and **Node.js** (if using npm for any JS build steps) installed.
+
+#### For Python back-end (run in your project directory):
+
+```bash
 pip install -r requirements.txt
-python train.py
-uvicorn main:app --reload
+```
+Or manually install (if requirements.txt is missing):
+```bash
+pip install flask scikit-learn pandas numpy
 ```
 
-Visit `http://localhost:8000/docs` after the model finishes training.
+#### For JavaScript dependencies:
 
-### Frontend
+If you use npm or yarn (optional):
 
 ```bash
-cd frontend
 npm install
-cp .env.example .env
-npm run dev
+# or
+yarn install
 ```
 
-The frontend uses `VITE_API_URL` from `.env` and falls back to `http://localhost:8000`.
+### 3. Train the Sentiment Analysis Model
 
-## API Routes
+```bash
+python train.py
+```
 
-- `GET /` returns API status and model name
-- `POST /predict` accepts `{ "text": "..." }`
-- `POST /batch` accepts `{ "texts": ["...", "..."] }`
-- `GET /model-info` returns model metadata
+This step produces a serialized model (e.g., `model.pkl`).
 
-## Model Details
+### 4. Start the Backend Server
 
-- Base checkpoint: `distilbert-base-uncased`
-- Dataset: `glue/sst2`
-- Training: 2 epochs, batch size 16, validation each epoch
-- Best model selection: validation accuracy
-- Sequence length: 128 tokens
-- Output labels: `POSITIVE` / `NEGATIVE`
+The exact command may depend on your backend framework (e.g., Flask):
 
-## Render Deployment
+```bash
+python app.py
+# or
+flask run
+```
 
-### Backend Web Service
+### 5. Run the Frontend
 
-- Name: `sentimentapi-backend`
-- Root Directory: `backend`
-- Build Command: `pip install -r requirements.txt`
-- Start Command: `uvicorn main:app --host 0.0.0.0 --port $PORT`
-- Environment Variables: `PYTHON_VERSION=3.10.0`
+Usually, open `index.html` in your browser directly.
 
-### Frontend Static Site
+Or if a build step is needed (in case of advanced JS setup):
 
-- Name: `sentimentapi-frontend`
-- Root Directory: `frontend`
-- Build Command: `npm install && npm run build`
-- Publish Directory: `dist`
-- Environment Variables: `VITE_API_URL=https://sentimentapi-backend.onrender.com`
+```bash
+npm start
+```
+(or describe here if a custom script is used)
 
-`render.yaml` is included for Blueprint-based deployment of both services.
+### Alternate Ways to Start
 
-## Portfolio Highlights
+- **Single-click:** Run everything via a launch script if provided (e.g. `run.sh` or `start.bat`).
+- **Docker (if supported):** (describe Docker usage here if you have a Dockerfile)
 
-- `train.py` demonstrates reproducible Hugging Face fine-tuning
-- `predict.py` handles inference and confidence scoring
-- `main.py` exposes four production-style FastAPI routes
-- `frontend/src/components/*` delivers the React dashboard and UX states
+---
+
+## 💡 Troubleshooting
+
+- If you see errors about a missing model, ensure you've run `python train.py` first.
+- If ports conflict, change the port in `app.py` or your server config.
+- For Python dependencies, use a virtual environment:
+  ```bash
+  python -m venv venv
+  source venv/bin/activate  # On Windows use venv\Scripts\activate
+  ```
+
+## 🤝 Contributing
+
+Pull requests and stars are welcome! For major changes, please open an issue first to discuss what you’d like to change.
+
+---
+
+## 📄 License
+
+MIT License
+
+---
+
+*Analyse and understand sentiments in text with ease!*
