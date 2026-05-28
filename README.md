@@ -1,6 +1,16 @@
 # Sentiment Analyser AI
 
-Unlock the power of sentiment analytics with **Sentiment_Analyser_AI** – a web-based application that utilizes machine learning and state-of-the-art Natural Language Processing (NLP) to determine the sentiment of textual data. Instantly classify text as positive, negative, or neutral, making it perfect for analyzing reviews, user feedback, social media, and more!
+Unlock the power of sentiment analytics with **Sentiment_Analyser_AI** – a web-based application that utilizes machine learning and state-of-the-art Natural Language Processing (NLP) to determine sentiment from text.
+
+---
+
+🔴 **Live Demo** → https://sentimentapi-frontend.onrender.com  
+📖 **API Docs**  → https://sentimentapi-backend.onrender.com/docs  
+🤗 **Model**     → https://huggingface.co/RachitMittal-20/sentimentapi-distilbert-sst2
+
+> **NOTE:** Directly copy the link and paste it in the address bar as it won’t open directly.
+
+---
 
 ## 🚀 Why You'll Love This Project
 
@@ -12,116 +22,78 @@ Unlock the power of sentiment analytics with **Sentiment_Analyser_AI** – a web
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** HTML, CSS, JavaScript (70%+ code in JS)
-- **Backend / ML:** Python, Flask (or relevant Python framework)
-- **ML/Data Science:** Scikit-learn, Pandas, Numpy (within `train.py`)
-- **Styling:** CSS
-- **Model Serialization:** Pickle or Joblib
+| Layer      | Tech                                         |
+|------------|----------------------------------------------|
+| Model      | HuggingFace Transformers + PyTorch           |
+| Backend    | Python 3.10 · FastAPI · Uvicorn              |
+| Frontend   | React · Vite · Tailwind CSS                  |
+| Deploy     | Hugging Face Spaces or custom web service    |
 
-## ⚙️ How It Works
+> **Original legacy stack:** Flask, Scikit-learn, Pandas (used earlier / for reference)
 
-1. **Training the Model:**  
-   The model is trained on a labeled dataset of text samples with known sentiments.  
-   - `train.py` is used to:
-     - Import and preprocess the dataset.
-     - Convert text to features using techniques like TF-IDF or CountVectorizer.
-     - Train a classifier (e.g., Logistic Regression, SVM, or similar) using scikit-learn.
-     - Save the trained model for use in the main application.
-   - Fine-tuning ensures good generalization and accuracy over a variety of input texts.
+## ⚡ API Endpoints
 
-2. **Web Application:**
-   - Users can input a sentence or paragraph.
-   - The app loads the trained model and predicts the sentiment in real-time, displaying the result on the web page.
+| Method | Route        | Description                        |
+|--------|--------------|------------------------------------|
+| GET    | /            | Health check + model name          |
+| POST   | /predict     | Single text → label + score        |
+| POST   | /batch       | Up to 10 texts → results[]         |
+| GET    | /model-info  | Model metadata                     |
 
-## ✨ How to Train the Model
+## ✨ Model Details
 
-> The fine-tuned model is not included in the repo.
->
-> **To train locally, run:**
->
-> ```bash
-> python train.py
-> ```
-> This will generate the trained model file locally in about 15 minutes (time may vary based on system performance).
+| Property    | Value                        |
+|-------------|------------------------------|
+| Base        | distilbert-base-uncased      |
+| Dataset     | SST-2 (67,349 train samples) |
+| Accuracy    | ~92% on validation set       |
+| Epochs      | 2 · Seed: 42                 |
+| Max tokens  | 128                          |
 
-## 🏁 How to Run the Project
+---
 
-### 1. Clone the Repository
+## ⚙️ Run Locally
+
+### Backend
 
 ```bash
-git clone https://github.com/RachitMittal-20/Sentiment_Analyser_AI.git
-cd Sentiment_Analyser_AI
-```
-
-### 2. Install the Dependencies
-
-You should have **Python 3.x** and **Node.js** (if using npm for any JS build steps) installed.
-
-#### For Python back-end (run in your project directory):
-
-```bash
+cd backend
 pip install -r requirements.txt
-```
-Or manually install (if requirements.txt is missing):
-```bash
-pip install flask scikit-learn pandas numpy
+python train.py              # fine-tunes and saves to ./model/
+uvicorn main:app --reload    # Starts FastAPI at http://localhost:8000/docs
 ```
 
-#### For JavaScript dependencies:
-
-If you use npm or yarn (optional):
+### Frontend
 
 ```bash
+cd frontend
 npm install
-# or
-yarn install
+echo "VITE_API_URL=http://localhost:8000" > .env
+npm run dev                  # Starts React at http://localhost:5173
 ```
 
-### 3. Train the Sentiment Analysis Model
+---
 
-```bash
-python train.py
-```
+## More Info
 
-This step produces a serialized model (e.g., `model.pkl`).
+For manual and advanced setup (virtual environments, troubleshooting, legacy interface, etc.), see additional instructions below.
 
-### 4. Start the Backend Server
-
-The exact command may depend on your backend framework (e.g., Flask):
-
-```bash
-python app.py
-# or
-flask run
-```
-
-### 5. Run the Frontend
-
-Usually, open `index.html` in your browser directly.
-
-Or if a build step is needed (in case of advanced JS setup):
-
-```bash
-npm start
-```
-(or describe here if a custom script is used)
-
-### Alternate Ways to Start
-
-- **Single-click:** Run everything via a launch script if provided (e.g. `run.sh` or `start.bat`).
-- **Docker (if supported):** (describe Docker usage here if you have a Dockerfile)
+[Existing install/training/usage instructions from original README...]
 
 ---
 
 ## 💡 Troubleshooting
 
 - If you see errors about a missing model, ensure you've run `python train.py` first.
-- If ports conflict, change the port in `app.py` or your server config.
+- If ports conflict, change the port in your FastAPI/React configs.
 - For Python dependencies, use a virtual environment:
-  ```bash
-  python -m venv venv
-  source venv/bin/activate  # On Windows use venv\Scripts\activate
-  ```
+
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows use venv\Scripts\activate
+```
+
+---
 
 ## 🤝 Contributing
 
