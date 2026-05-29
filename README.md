@@ -1,6 +1,20 @@
+<!-- TECHNOLOGY BADGES (inspired by your profile design) -->
+<p align="center">
+  <img src="https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI"/>
+  <img src="https://img.shields.io/badge/Transformers-ffcc00?style=for-the-badge&logo=python&logoColor=black" alt="Transformers"/>
+  <img src="https://img.shields.io/badge/HuggingFace-fcc42d?style=for-the-badge&logo=huggingface&logoColor=black" alt="HuggingFace"/>
+  <img src="https://img.shields.io/badge/React-61dafb?style=for-the-badge&logo=react&logoColor=black" alt="React"/>
+  <img src="https://img.shields.io/badge/Vite-646cff?style=for-the-badge&logo=vite&logoColor=white" alt="Vite"/>
+  <img src="https://img.shields.io/badge/Fine_tuning-faab00?style=for-the-badge&logo=python&logoColor=black" alt="Fine-tuning"/>
+  <img src="https://img.shields.io/badge/DistilBERT-00b67a?style=for-the-badge&logo=bookstack&logoColor=white" alt="DistilBERT"/>
+  <img src="https://img.shields.io/badge/NLP-0052cc?style=for-the-badge&logo=semantic-release&logoColor=white" alt="NLP"/>
+  <img src="https://img.shields.io/badge/Sentiment_Analysis-0077b6?style=for-the-badge&logo=google-analytics&logoColor=white" alt="Sentiment Analysis"/>
+  <img src="https://img.shields.io/badge/Full_Stack-24292e?style=for-the-badge&logo=stackshare&logoColor=white" alt="Full Stack"/>
+</p>
+
 # Sentiment Analyser AI
 
-Unlock the power of sentiment analytics with **Sentiment_Analyser_AI** – a web-based application that utilizes machine learning and state-of-the-art Natural Language Processing (NLP) to determine sentiment of any text, phrase, or document.
+Unlock the power of sentiment analytics with **Sentiment_Analyser_AI** – a web-based application that utilizes machine learning and state-of-the-art Natural Language Processing (NLP) to determine sentiment of input text with high accuracy...
 
 ---
 
@@ -106,3 +120,4 @@ MIT License
 ---
 
 *Analyse and understand sentiments in text with ease!*
+
