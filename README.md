@@ -1,12 +1,10 @@
 # Sentiment Analyser AI
 
-Unlock the power of sentiment analytics with **Sentiment_Analyser_AI** – a web-based application that utilizes machine learning and state-of-the-art Natural Language Processing (NLP) to determine sentiment from text.
+Unlock the power of sentiment analytics with **Sentiment_Analyser_AI** – a web-based application that utilizes machine learning and state-of-the-art Natural Language Processing (NLP) to determine sentiment of any text, phrase, or document.
 
 ---
 
-🔴 **Live Demo** → https://sentimentapi-frontend.onrender.com  
-📖 **API Docs**  → https://sentimentapi-backend.onrender.com/docs  
-🤗 **Model**     → https://huggingface.co/RachitMittal-20/sentimentapi-distilbert-sst2
+🔴 **Live Demo** → https://huggingface.co/spaces/rachitmittal20/Sentimentanalyser__
 
 > **NOTE:** Directly copy the link and paste it in the address bar as it won’t open directly.
 
